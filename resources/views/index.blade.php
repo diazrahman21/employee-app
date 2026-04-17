@@ -251,6 +251,7 @@
             $.ajax({
                 url: `${API_URL}/${id}`,
                 method: 'GET',
+                dataType: 'json',
                 success: function(employee) {
                     $('#employeeId').val(employee.id);
                     $('#nama').val(employee.nama);
@@ -259,8 +260,11 @@
                     $('#employeeModalLabel').text('Edit Employee');
                     $('#employeeModal').modal('show');
                 },
-                error: function() {
-                    alert('Error loading employee');
+                error: function(xhr, status, error) {
+                    console.log('Error Status:', status);
+                    console.log('Error:', error);
+                    console.log('Response:', xhr.responseJSON);
+                    alert('Error loading employee: ' + (xhr.responseJSON?.message || error || 'Unknown error'));
                 }
             });
         }

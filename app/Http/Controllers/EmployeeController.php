@@ -18,6 +18,14 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Get a single employee
+     */
+    public function show(Employee $employee)
+    {
+        return response()->json($employee);
+    }
+
+    /**
      * Store a newly created employee
      */
     public function store(Request $request)
